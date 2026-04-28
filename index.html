@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char text[100];
+    int key, choice, i;
+
+    printf("Caesar Cipher Program\n");
+    printf("1. Encrypt\n");
+    printf("2. Decrypt\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    printf("Enter the text: ");
+    scanf("%s", text);
+
+    printf("Enter the key (shift value): ");
+    scanf("%d", &key);
+
+    if (choice == 1) {
+        // Encryption
+        for (i = 0; text[i] != '\0'; i++) {
+            if (text[i] >= 'A' && text[i] <= 'Z') {
+                text[i] = ((text[i] - 'A' + key) % 26) + 'A';
+            }
+            else if (text[i] >= 'a' && text[i] <= 'z') {
+                text[i] = ((text[i] - 'a' + key) % 26) + 'a';
+            }
+        }
+        printf("Encrypted text: %s\n", text);
+    }
+
+    else if (choice == 2) {
+        // Decryption
+        for (i = 0; text[i] != '\0'; i++) {
+            if (text[i] >= 'A' && text[i] <= 'Z') {
+                text[i] = ((text[i] - 'A' - key + 26) % 26) + 'A';
+            }
+            else if (text[i] >= 'a' && text[i] <= 'z') {
+                text[i] = ((text[i] - 'a' - key + 26) % 26) + 'a';
+            }
+        }
+        printf("Decrypted text: %s\n", text);
+    }
+
+    else {
+        printf("Invalid choice\n");
+    }
+
+    return 0;
+}
